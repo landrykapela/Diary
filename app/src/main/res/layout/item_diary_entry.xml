@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/list_item_horizontal_margin"
+    android:paddingRight="@dimen/padding_text_area_wide"
+    android:paddingEnd="@dimen/padding_text_area_wide"
+    android:background="@drawable/touch_selector">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="@dimen/list_item_icon_size"
+        android:layout_height="@dimen/list_item_icon_size"
+        android:layout_marginBottom="@dimen/list_item_icon_margin"
+        android:layout_marginEnd="@dimen/list_item_icon_margin"
+        android:layout_marginLeft="@dimen/list_item_icon_margin"
+        android:layout_marginRight="@dimen/list_item_icon_margin"
+        android:layout_marginStart="@dimen/list_item_icon_margin"
+        android:layout_marginTop="@dimen/list_item_icon_margin"
+        android:contentDescription="@string/proud"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_mood_sad" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/list_item_icon_margin"
+        android:layout_marginLeft="@dimen/list_item_icon_margin"
+        android:layout_marginRight="@dimen/list_item_icon_margin"
+        android:layout_marginStart="@dimen/list_item_icon_margin"
+        android:layout_marginTop="20dp"
+        android:text="Title Here dkajflkaj;lf adfja l;jfdal kdjflak;jfl;a"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintStart_toEndOf="@+id/ivIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separator_size"
+        android:layout_marginLeft="@dimen/list_item_icon_margin"
+        android:layout_marginStart="@dimen/list_item_icon_margin"
+        android:layout_marginTop="@dimen/padding_button_top_bottom"
+        android:background="@color/colorDisabled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivIcon"></View>
+</android.support.constraint.ConstraintLayout>

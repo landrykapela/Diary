@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/add_new_entry_text"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/title"
+            android:inputType="text|textCapSentences"
+            app:layout_constraintStart_toStartOf="@+id/tvLabel"
+            app:layout_constraintTop_toBottomOf="@+id/tvError" />
+
+        <EditText
+            android:id="@+id/etThoughts"
+            android:layout_width="316dp"
+            android:layout_height="201dp"
+            android:layout_marginEnd="40dp"
+            android:ems="10"
+            android:gravity="top|left|start"
+            android:hint="@string/thoughts"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/padding_text_area"
+            android:textIsSelectable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/color_error"
+        app:layout_constraintEnd_toEndOf="@+id/tvLabel"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/tvLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvLabel" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/margin_left_start"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
+            android:paddingBottom="@dimen/padding_button_top_bottom"
+            android:paddingEnd="@dimen/padding_button_right"
+            android:paddingLeft="@dimen/padding_button_left"
+            android:paddingRight="@dimen/padding_button_right"
+            android:paddingStart="@dimen/padding_button_left"
+            android:paddingTop="@dimen/padding_button_top_bottom"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/etThoughts"
+            app:layout_constraintTop_toBottomOf="@+id/etThoughts" />
+
+        <Button
+            android:id="@+id/btnDiscard"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginEnd="@dimen/margin_right_end"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background_accent"
+            android:paddingBottom="@dimen/padding_button_top_bottom"
+            android:paddingEnd="@dimen/padding_button_right"
+            android:paddingLeft="@dimen/padding_button_left"
+            android:paddingRight="@dimen/padding_button_right"
+            android:paddingStart="@dimen/padding_button_left"
+            android:paddingTop="@dimen/padding_button_top_bottom"
+            android:text="@string/discard"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/etThoughts"
+            app:layout_constraintTop_toBottomOf="@+id/etThoughts" />
+
+        <Spinner
+            android:id="@+id/spMood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:padding="@dimen/spinner_padding"
+            app:layout_constraintTop_toBottomOf="@+id/tvMoodLabel"
+            tools:layout_editor_absoluteX="60dp" />
+
+        <TextView
+            android:id="@+id/tvMoodLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mood"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintStart_toStartOf="@+id/etTitle"
+            app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+    </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+

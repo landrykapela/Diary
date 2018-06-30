@@ -1,84 +1,65 @@
 package tz.co.neelansoft.diary;
 
-
-import android.support.test.espresso.DataInteraction;
-import android.support.test.espresso.ViewInteraction;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static android.support.test.espresso.action.ViewActions.*;
-import static android.support.test.espresso.assertion.ViewAssertions.*;
-import static android.support.test.espresso.matcher.ViewMatchers.*;
-
-import tz.co.neelansoft.diary.R;
-
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.is;
+import static android.support.test.espresso.Espresso.closeSoftKeyboard;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.ComponentNameMatchers.hasClassName;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import android.support.test.espresso.intent.matcher.IntentMatchers;
 
-@LargeTest
+/**
+ * Created by landre on 30/06/2018.
+ */
 @RunWith(AndroidJUnit4.class)
 public class SigninActivityTest {
-
+private Resources resources;
     @Rule
-    public ActivityTestRule<SigninActivity> mActivityTestRule = new ActivityTestRule<>(SigninActivity.class);
+    public ActivityTestRule<SigninActivity> mSigninActivityTestRule = new ActivityTestRule<SigninActivity>(SigninActivity.class);
 
+
+    @Before
+    public void init(){
+        resources = mSigninActivityTestRule.getActivity().getResources();
+/*        onView(withId(R.id.etSignInEmail)).perform(typeText("lan_dre@outlook.com"));
+        onView(withId(R.id.etSignInPassword)).perform(typeText("password"));
+        closeSoftKeyboard();*/
+    }
+/*
     @Test
-    public void signinActivityTest() {
-         // Added a sleep statement to match the app's execution delay.
- // The recommended way to handle such scenarios is to use Espresso idling resources:
-  // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-try {
- Thread.sleep(3578526);
- } catch (InterruptedException e) {
- e.printStackTrace();
- }
-        
-        ViewInteraction button = onView(
-allOf(withId(R.id.btnSignInWithEmailAndPassword),
-childAtPosition(
-childAtPosition(
-withId(android.R.id.content),
-0),
-5),
-isDisplayed()));
-        button.check(matches(isDisplayed()));
-        
-        }
+    public void clickSigninWithEmailAndPasswordButton() throws Exception{
 
-        private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
+        onView(withId(R.id.btnSignInWithEmailAndPassword))
+                .perform(click());
 
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
+        onView(withId(R.id.tvSignInError)).check(matches(withText(resources.getString(R.string.signin_error))));
 
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup)parent).getChildAt(position));
-            }
-        };
+
     }
+*/
+    @Test
+    public void clickSignupWithEmailAndPasswordButton(){
+        onView(withId(R.id.btnSignupWithEmailAndPassword)).perform(click());
+
+        intended(hasComponent("tz.co.neelansoft.diary.SignupActivity"));
     }
+
+
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_right_end_wide">48dp</dimen>
+    <dimen name="margin_left_start_wide">48dp</dimen>
+    <dimen name="margin_right_end">16dp</dimen>
+    <dimen name="margin_left_start">16dp</dimen>
+    <dimen name="padding_button_left">16dp</dimen>
+    <dimen name="padding_button_right">16dp</dimen>
+    <dimen name="padding_button_top_bottom">8dp</dimen>
+    <dimen name="text_button_size">16sp</dimen>
+    <dimen name="padding_text_button">8dp</dimen>
+    <dimen name="fab_margin">32dp</dimen>
+    <dimen name="spinner_padding">4dp</dimen>
+    <dimen name="edit_text_padding">4dp</dimen>
+    <dimen name="padding_text_area">4dp</dimen>
+    <dimen name="padding_text_area_wide">24dp</dimen>
+    <dimen name="list_item_icon_size">64dp</dimen>
+    <dimen name="list_item_mini_icon_size">32dp</dimen>
+    <dimen name="list_item_icon_margin">16dp</dimen>
+    <dimen name="list_item_horizontal_margin">16dp</dimen>
+    <dimen name="separator_size">1dp</dimen>
+    <dimen name="mood_image_large">144dp</dimen>
+    <dimen name="button_width">90dp</dimen>
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="button_width_wide">220dp</dimen>
+    <dimen name="button_height_wide">48dp</dimen>
+</resources>

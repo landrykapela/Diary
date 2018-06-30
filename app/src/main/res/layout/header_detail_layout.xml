@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="@dimen/mood_image_large"
+        android:layout_height="@dimen/mood_image_large"
+        android:layout_marginBottom="@dimen/list_item_icon_margin"
+        android:layout_marginEnd="@dimen/list_item_icon_margin"
+        android:layout_marginLeft="@dimen/list_item_icon_margin"
+        android:layout_marginRight="@dimen/list_item_icon_margin"
+        android:layout_marginStart="@dimen/list_item_icon_margin"
+        android:layout_marginTop="@dimen/list_item_icon_margin"
+        android:contentDescription="@string/proud"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/star_big_on" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="@dimen/margin_right_end"
+        android:layout_marginStart="@dimen/margin_left_start"
+        android:layout_marginRight="@dimen/margin_right_end"
+        android:layout_marginLeft="@dimen/margin_left_start"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="@dimen/padding_text_area_wide"
+        android:paddingRight="@dimen/padding_text_area_wide"
+        android:text="TextView"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivIcon"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/ivIcon"
+        app:layout_constraintTop_toBottomOf="@+id/ivIcon"
+        app:layout_constraintVertical_bias="0.0" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,332 @@
+{
+  "project_info": {
+    "project_number": "888695949307",
+    "firebase_url": "https://tulonge-1241.firebaseio.com",
+    "project_id": "tulonge-1241",
+    "storage_bucket": "tulonge-1241.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:07c2b40d459cd50d",
+        "android_client_info": {
+          "package_name": "com.neelansoft.chefkile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-okefq5rckkq15lmrh802afjhlqolakhq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neelansoft.chefkile",
+            "certificate_hash": "3d48009747ca80a32283019dd66fe1515d90d864"
+          }
+        },
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888695949307-782go4vqfohvrongfqlb7k5go3u7aqfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:2edc8db9d63ee993",
+        "android_client_info": {
+          "package_name": "com.neelansoft.elimukwanza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-jqn5eql43qem8nmokrc4mu53ddlgaqvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neelansoft.elimukwanza",
+            "certificate_hash": "ebbc16d96d6c8335337014b77a439efc079d6b07"
+          }
+        },
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888695949307-782go4vqfohvrongfqlb7k5go3u7aqfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:1fe311cb02a4daa5",
+        "android_client_info": {
+          "package_name": "com.neelansoft.praywithdiane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:1a43e010d1cf58bc",
+        "android_client_info": {
+          "package_name": "com.neelansoft.sokoni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:0e1d94ea53dd6029",
+        "android_client_info": {
+          "package_name": "com.neelansoft.tacaso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-v26ks22ba34mcncof06fhnl2cejeedl3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neelansoft.tacaso",
+            "certificate_hash": "89c6f452269876fcf61354cd1529aeb4eb97988c"
+          }
+        },
+        {
+          "client_id": "888695949307-vvj3qo270tc0kbqkeiksg314fdiontmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neelansoft.tacaso",
+            "certificate_hash": "26f32a5bd48d1fa99e00e16f5d8d375df0a1e5d0"
+          }
+        },
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888695949307-782go4vqfohvrongfqlb7k5go3u7aqfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:2f54593b94d33373",
+        "android_client_info": {
+          "package_name": "com.neelansoft.tulonge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:cb28640ed5786489",
+        "android_client_info": {
+          "package_name": "tz.co.neelansoft.diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-jknkofnd4qqiaa1sclne24scqsbtdufu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tz.co.neelansoft.diary",
+            "certificate_hash": "3d48009747ca80a32283019dd66fe1515d90d864"
+          }
+        },
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888695949307-782go4vqfohvrongfqlb7k5go3u7aqfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888695949307:android:fe6e091cb3c3f9d7",
+        "android_client_info": {
+          "package_name": "tz.co.neelansoft.elimukwanza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888695949307-qsd8g2mcom12avlc6hsqnj0ukbhvhf0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tz.co.neelansoft.elimukwanza",
+            "certificate_hash": "1236b579e03f893dbea8f0c1429cf5a3aad2ca8c"
+          }
+        },
+        {
+          "client_id": "888695949307-8p9j37oioojjq24nnkjpv22ttiukelb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqWZzEWeWvz3jDB2KmTNDvib6qhSoXlO8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888695949307-782go4vqfohvrongfqlb7k5go3u7aqfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
