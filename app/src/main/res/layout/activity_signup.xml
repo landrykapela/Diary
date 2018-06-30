@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,30 +20,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etSignupEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/etName"
-        app:layout_constraintTop_toBottomOf="@+id/etName" />
+        app:layout_constraintStart_toStartOf="@+id/etSignupName"
+        app:layout_constraintTop_toBottomOf="@+id/etSignupName" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etSignupPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_left_start"
         android:layout_marginStart="@dimen/margin_right_end"
-        android:layout_marginRight="@dimen/margin_left_start"
-        android:layout_marginLeft="@dimen/margin_right_end"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail"
-        app:layout_constraintStart_toStartOf="@+id/etEmail"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/etSignupEmail"
+        app:layout_constraintStart_toStartOf="@+id/etSignupEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etSignupEmail"
+        android:layout_marginRight="@dimen/margin_left_start"
+        android:layout_marginLeft="@dimen/margin_right_end" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -53,11 +51,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/show"
-        app:layout_constraintStart_toStartOf="@+id/etPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintStart_toStartOf="@+id/etSignupPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etSignupPassword" />
 
     <TextView
-        android:id="@+id/tvError"
+        android:id="@+id/tvSignupError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -67,7 +65,7 @@
         android:layout_marginLeft="@dimen/margin_left_start"
         android:text=""
         android:textColor="@color/color_error"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintBottom_toTopOf="@+id/etSignupEmail"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -75,71 +73,71 @@
         app:layout_constraintVertical_bias="0.427" />
 
     <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnSignupSubmit"
+        android:layout_width="@dimen/button_width_wide"
+        android:layout_height="@dimen/button_height_wide"
         android:layout_marginBottom="156dp"
-        android:layout_marginRight="@dimen/margin_right_end"
-        android:layout_marginLeft="@dimen/margin_left_start"
         android:layout_marginEnd="@dimen/margin_right_end"
         android:layout_marginStart="@dimen/margin_left_start"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/list_item_horizontal_margin"
         android:background="@drawable/button_background_disabled"
+        android:enabled="false"
         android:paddingEnd="@dimen/padding_button_right"
         android:paddingLeft="@dimen/padding_button_left"
         android:paddingRight="@dimen/padding_button_right"
         android:paddingStart="@dimen/padding_button_left"
         android:text="@string/submit"
         android:textColor="@color/black"
-        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etSignupPassword"
         app:layout_constraintHorizontal_bias="0.591"
-        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintStart_toStartOf="@+id/etSignupPassword"
         app:layout_constraintTop_toBottomOf="@+id/checkBox"
-        app:layout_constraintVertical_bias="0.486" />
+        app:layout_constraintVertical_bias="0.486"
+        android:layout_marginRight="@dimen/margin_right_end"
+        android:layout_marginLeft="@dimen/margin_left_start" />
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etSignupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_right_end"
         android:layout_marginStart="@dimen/margin_left_start"
-        android:layout_marginRight="@dimen/margin_right_end"
-        android:layout_marginLeft="@dimen/margin_left_start"
         android:layout_marginTop="92dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName|textCapWords"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginRight="@dimen/margin_right_end"
+        android:layout_marginLeft="@dimen/margin_left_start" />
 
-    <TextView
-        android:id="@+id/tvSignin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/btnSignupSigninButton"
+        android:layout_width="@dimen/button_width_wide"
+        android:layout_height="@dimen/button_height_wide"
         android:layout_marginEnd="@dimen/margin_right_end"
         android:layout_marginStart="@dimen/margin_left_start"
-        android:layout_marginRight="@dimen/margin_right_end"
-        android:layout_marginLeft="@dimen/margin_left_start"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/list_item_horizontal_margin"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/padding_text_button"
         android:text="@string/signin"
         android:textAllCaps="true"
-        android:clickable="true"
-        android:padding="@dimen/padding_text_button"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/btnSubmit"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnSignupSubmit"
         app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="@+id/btnSubmit"
-        app:layout_constraintTop_toBottomOf="@+id/btnSubmit"
-        android:focusable="true" />
+        app:layout_constraintStart_toStartOf="@+id/btnSignupSubmit"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignupSubmit"
+        android:layout_marginRight="@dimen/margin_right_end"
+        android:layout_marginLeft="@dimen/margin_left_start" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarSignup"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

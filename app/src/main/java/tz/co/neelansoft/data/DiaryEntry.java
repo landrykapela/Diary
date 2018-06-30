@@ -7,7 +7,6 @@ import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import java.util.Date;
 

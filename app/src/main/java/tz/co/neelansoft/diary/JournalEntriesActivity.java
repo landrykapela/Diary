@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -19,15 +18,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tz.co.neelansoft.Utils.Config;
@@ -46,12 +39,11 @@ import tz.co.neelansoft.data.DiaryEntry;
 import tz.co.neelansoft.data.DiaryEntryAdapter;
 import tz.co.neelansoft.data.DiaryExecutors;
 
-import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
-
 /**
  * Created by landre on 26/06/2018.
  */
 
+@SuppressWarnings("ConstantConditions")
 public class JournalEntriesActivity extends AppCompatActivity implements DiaryEntryAdapter.ItemClickListener{
 
     private static final String TAG = "JournalEntriesActivity";
@@ -99,8 +91,8 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
         mDiaryEntryAdapter = new DiaryEntryAdapter(this,this);
         mRecyclerView.setAdapter(mDiaryEntryAdapter);
-
-        retrieveDiaryEntries();
+        final String userId = mFirebaseAuth.getCurrentUser().getUid();
+        retrieveDiaryEntries(userId);
 
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -124,7 +116,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                retrieveDiaryEntries();
+                                retrieveDiaryEntries(userId);
                             }
                         });
                         if(!builder.create().isShowing()) builder.create().show();
@@ -157,8 +149,11 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
     }
 
     private void updateTitle(){
-        String title = mDiaryPreferenceUtils.getUserName().split(" ")[0]+"'s Diary";
-        getSupportActionBar().setTitle(title);
+        String[] splits = mDiaryPreferenceUtils.getUserName().split(" ");
+        if(splits != null && splits.length > 0) {
+            String title = splits[0]+"'s Diary";
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     private void deleteDiaryEntry(final RecyclerView.ViewHolder vh){
@@ -211,15 +206,17 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
     }
 
-    private void retrieveDiaryEntries(){
+    private void retrieveDiaryEntries(final String user_id){
         LiveData<List<DiaryEntry>> entries = mDatabase.entryDao().getEntries(mDiaryPreferenceUtils.getUserId());
         entries.observe(this, new Observer<List<DiaryEntry>>() {
             @Override
             public void onChanged(@Nullable List<DiaryEntry> diaryEntries) {
                 Log.d(TAG,"Live data is working....");
-                mDiaryEntryAdapter.setDiaryEntries(diaryEntries);
-                if(diaryEntries.size() == 0){
-                    checkBackup();
+                if(diaryEntries != null) {
+                    mDiaryEntryAdapter.setDiaryEntries(diaryEntries);
+                    if (diaryEntries.size() == 0) {
+                        checkBackup(user_id);
+                    }
                 }
             }
         });
@@ -241,7 +238,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
         startActivity(firebaseBackupIntent);
     }
 
-    private void checkBackup(){
+    private void checkBackup(final String user_id){
 
        if(mDiaryPreferenceUtils.isUserLoggedIn()){
 
@@ -251,7 +248,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
                    for(DataSnapshot ds: dataSnapshot.getChildren()){
                        if(ds.getKey().equals(mFirebaseAuth.getCurrentUser().getUid())){
                            Log.i(TAG,"backup exists: "+ds.getKey());
-                           suggestRestore();
+                           suggestRestore(user_id);
                            break;
                        }
                        else{
@@ -270,7 +267,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
     }
 
-    private void suggestRestore(){
+    private void suggestRestore(final String user_id){
         AlertDialog.Builder builder = new AlertDialog.Builder(JournalEntriesActivity.this)
                 .setCancelable(true)
                 .setIcon(R.mipmap.ic_launcher)
@@ -279,7 +276,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
                 .setPositiveButton(R.string.restore, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which){
-                        restoreData();
+                        restoreData(user_id);
                     }
 
                 })
@@ -293,8 +290,8 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
         if(!builder.create().isShowing()) builder.create().show();
     }
 
-    private void restoreData(){
-        mFirebaseDatabase.child(mFirebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+    private void restoreData(String user_id){
+        mFirebaseDatabase.child(user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

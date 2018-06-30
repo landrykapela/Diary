@@ -64,7 +64,7 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         mFirebaseReference = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_DB_REFERENCE);
         mDatabase = DiaryDatabase.getDatabaseInstance(this);
 
-
+        final String userId = mFirebaseAuth.getCurrentUser().getUid();
 
         mButtonCancel.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -82,7 +82,7 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         mButtonRestore.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                confirmRestore();
+                confirmRestore(userId);
             }
         });
     }
@@ -126,7 +126,7 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         }
     }
 
-    private void confirmRestore(){
+    private void confirmRestore(final String user_id){
         AlertDialog.Builder builder = new AlertDialog.Builder(FirebaseBackupActivity.this)
                 .setCancelable(true)
                 .setIcon(R.mipmap.ic_launcher)
@@ -135,7 +135,7 @@ public class FirebaseBackupActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.restore, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which){
-                        restoreData();
+                        restoreData(user_id);
                     }
 
                 })
@@ -149,8 +149,8 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         if(!builder.create().isShowing()) builder.create().show();
     }
 
-    private void restoreData(){
-        mFirebaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+    private void restoreData(String user_id){
+        mFirebaseReference.child(user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

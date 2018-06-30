@@ -58,16 +58,16 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mEditTextName     = findViewById(R.id.etName);
-        mEditTextEmail    = findViewById(R.id.etEmail);
-        mEditTextPassword = findViewById(R.id.etPassword);
+        mEditTextName     = findViewById(R.id.etSignupName);
+        mEditTextEmail    = findViewById(R.id.etSignupEmail);
+        mEditTextPassword = findViewById(R.id.etSignupPassword);
         mCheckBox         = findViewById(R.id.checkBox);
 
-        mProgressBar      = findViewById(R.id.progressBar);
-        mErrorDisplay     = findViewById(R.id.tvError);
+        mProgressBar      = findViewById(R.id.progressBarSignup);
+        mErrorDisplay     = findViewById(R.id.tvSignupError);
 
-        mSubmitButton     = findViewById(R.id.btnSubmit);
-        mSigninButton     = findViewById(R.id.tvSignin);
+        mSubmitButton     = findViewById(R.id.btnSignupSubmit);
+        mSigninButton     = findViewById(R.id.btnSignupSigninButton);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDiaryPreferenceUtil = new DiaryPreferenceUtils(this);
@@ -211,8 +211,9 @@ public class SignupActivity extends AppCompatActivity {
                                 }
                             }
                             else{
+                                mProgressBar.setVisibility(View.GONE);
                                 Log.e(TAG,"Could not create user", task.getException());
-                                mErrorDisplay.setText("An error occurred while creating account");
+                                mErrorDisplay.setText(getResources().getString(R.string.signup_error));
                                 return;
 
                             }
@@ -240,6 +241,7 @@ public class SignupActivity extends AppCompatActivity {
 
         if(mEmailOk){
             mEditTextEmail.setTextColor(getResources().getColor(R.color.colorPrimary));
+
         }
         if(mPasswordOk){
 

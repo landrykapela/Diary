@@ -20,7 +20,7 @@
     <string name="modify_entry">Modify Entry</string>
     <string name="thoughts">Write down your thoughts here Write down your thoughts here</string>
     <string name="save">Save</string>
-    <string name="discard">Discard</string>
+    <string name="discard">Cancel</string>
     <string name="signout">Signout</string>
     <string name="confirm_signout">Are you sure you want to signout?</string>
     <string name="yes">Yes</string>
@@ -32,7 +32,7 @@
     <string name="angry">Angry</string>
     <string name="sad">Sad</string>
     <string name="joy">Joyful</string>
-    <string name="embarassed">Embarassed</string>
+    <string name="embarassed">Embarrassed</string>
     <string name="upset">Upset</string>
     <string name="proud">Proud</string>
     <string name="title">Title</string>
@@ -53,6 +53,7 @@
     <string name="backup_form_text">Keep your data in sync</string>
     <string name="intro_label_font">sans-serif</string>
     <string name="signin_success">Signin successful</string>
+    <string name="signup_error">Error while signing up</string>
 
     <string-array name="moods">
         <item>@string/happy</item>

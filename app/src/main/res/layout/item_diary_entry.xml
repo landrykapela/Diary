@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/list_item_horizontal_margin"
     android:paddingRight="@dimen/padding_text_area_wide"
     android:paddingEnd="@dimen/padding_text_area_wide"
+    android:paddingLeft="@dimen/padding_text_area_wide"
+    android:paddingStart="@dimen/padding_text_area_wide"
     android:background="@drawable/touch_selector">
 
     <ImageView
@@ -59,5 +60,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIcon"></View>
+        app:layout_constraintTop_toBottomOf="@+id/ivIcon"/>
 </android.support.constraint.ConstraintLayout>

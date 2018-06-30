@@ -33,13 +33,14 @@ public class MoodSpinnerAdapter extends ArrayAdapter<Mood> {
     public int getCount(){
         return mMoods.size();
     }
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, @NonNull ViewGroup parent){
         return getCustomView(position, convertView, parent);
     }
 
     @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent){
+    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent){
         return getCustomView(position,convertView,parent);
     }
 
@@ -47,12 +48,14 @@ public class MoodSpinnerAdapter extends ArrayAdapter<Mood> {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View customView = inflater.inflate(R.layout.spinner_item_layout, parent, false);
-
-        TextView title = (TextView) customView.findViewById(R.id.tvTitle);
-        ImageView icon = (ImageView) customView.findViewById(R.id.ivIcon);
-        Mood moodItem = mMoods.get(position);
-        title.setText(moodItem.getTitle());
-        icon.setImageBitmap(moodItem.getMoodIcon(mContext));
-        return customView;
+        if(customView != null) {
+            TextView title = customView.findViewById(R.id.tvTitle);
+            ImageView icon = customView.findViewById(R.id.ivIcon);
+            Mood moodItem = mMoods.get(position);
+            title.setText(moodItem.getTitle());
+            icon.setImageBitmap(moodItem.getMoodIcon(mContext));
+            return customView;
+        }
+        return null;
     }
 }

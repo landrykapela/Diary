@@ -2,7 +2,6 @@ package tz.co.neelansoft.data;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -85,9 +84,9 @@ public class DiaryEntryAdapter extends RecyclerView.Adapter<DiaryEntryAdapter.Vi
         public ViewHolder(View view){
             super(view);
 
-            ivIcon = (ImageView) view.findViewById(R.id.ivIcon);
-            tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-            tvDate  = (TextView) view.findViewById(R.id.tvDate);
+            ivIcon = view.findViewById(R.id.ivIcon);
+            tvTitle = view.findViewById(R.id.tvTitle);
+            tvDate  = view.findViewById(R.id.tvDate);
 
             view.setOnClickListener(this);
         }

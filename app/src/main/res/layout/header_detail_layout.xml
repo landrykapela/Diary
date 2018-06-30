@@ -34,7 +34,6 @@
         android:layout_marginTop="16dp"
         android:paddingLeft="@dimen/padding_text_area_wide"
         android:paddingRight="@dimen/padding_text_area_wide"
-        android:text="TextView"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ivIcon"

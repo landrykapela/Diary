@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-android:fillViewport="true"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -35,7 +35,9 @@ android:fillViewport="true"
         android:text="@string/backup_form_text"
         android:fontFamily="@string/intro_label_font"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        tools:targetApi="jelly_bean" />
+
 
     <ImageView
         android:id="@+id/ivCloudBuckup"
@@ -48,6 +50,21 @@ android:fillViewport="true"
         android:layout_marginTop="52dp"
         android:src="@mipmap/ic_cloud_upload_white_48dp"
         android:contentDescription="@string/backup_to_cloud" />
+    <TextView
+        android:id="@+id/tvLabelUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_right_end"
+        android:layout_marginLeft="@dimen/margin_left_start"
+        android:layout_marginRight="@dimen/margin_right_end"
+        android:layout_marginStart="@dimen/margin_left_start"
+        android:layout_marginTop="36dp"
+        android:layout_gravity="center"
+        android:text="@string/backup_to_cloud"
+        android:fontFamily="@string/intro_label_font"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        tools:targetApi="jelly_bean" />
     <Button
         android:id="@+id/restore_backup_button"
         android:layout_width="@dimen/button_width_wide"

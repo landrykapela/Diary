@@ -1,7 +1,7 @@
 package tz.co.neelansoft.diary;
 
-import android.content.Intent;
 import android.content.res.Resources;
+import android.support.test.espresso.intent.Intents;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -13,17 +13,12 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
-import static android.support.test.espresso.intent.matcher.ComponentNameMatchers.hasClassName;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import android.support.test.espresso.intent.matcher.IntentMatchers;
 
 /**
  * Created by landre on 30/06/2018.
@@ -32,17 +27,18 @@ import android.support.test.espresso.intent.matcher.IntentMatchers;
 public class SigninActivityTest {
 private Resources resources;
     @Rule
-    public ActivityTestRule<SigninActivity> mSigninActivityTestRule = new ActivityTestRule<SigninActivity>(SigninActivity.class);
+    public ActivityTestRule<SigninActivity> mSigninActivityTestRule = new ActivityTestRule<>(SigninActivity.class);
 
 
     @Before
     public void init(){
+
         resources = mSigninActivityTestRule.getActivity().getResources();
-/*        onView(withId(R.id.etSignInEmail)).perform(typeText("lan_dre@outlook.com"));
+        onView(withId(R.id.etSignInEmail)).perform(typeText("landrykapela@gmail.com"));
         onView(withId(R.id.etSignInPassword)).perform(typeText("password"));
-        closeSoftKeyboard();*/
+        closeSoftKeyboard();
     }
-/*
+
     @Test
     public void clickSigninWithEmailAndPasswordButton() throws Exception{
 
@@ -53,9 +49,10 @@ private Resources resources;
 
 
     }
-*/
+
     @Test
-    public void clickSignupWithEmailAndPasswordButton(){
+    public void clickSignupWithEmailAndPasswordButton() throws Exception{
+        Intents.init();
         onView(withId(R.id.btnSignupWithEmailAndPassword)).perform(click());
 
         intended(hasComponent("tz.co.neelansoft.diary.SignupActivity"));

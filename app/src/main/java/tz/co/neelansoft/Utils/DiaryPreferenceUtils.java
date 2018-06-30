@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseUser;
 
 /**
@@ -77,8 +76,11 @@ public class DiaryPreferenceUtils {
             setUserName(user.getDisplayName());
         }
         else{
-            String displayName = user.getEmail().split("@")[0];
-            setUserName(displayName);
+            String[] splits = user.getEmail().split("@");
+            if(splits != null && splits.length > 0) {
+                String displayName = splits[0];
+                setUserName(displayName);
+            }
         }
 
     }
