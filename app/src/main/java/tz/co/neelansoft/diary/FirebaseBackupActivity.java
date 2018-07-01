@@ -76,7 +76,20 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         mImageCloud.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                performBackup();
+                //check if user is logged in to app
+                if(mPreference.isUserLoggedIn()){
+                    //check if user exist
+                    FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
+                    if(firebaseUser == null){
+                        requireLogin();
+                    }
+                    else{
+                        final String user_id = firebaseUser.getUid();
+                        confirmBackup(user_id);
+                    }
+                }
+               // performBackup();
             }
         });
         mButtonRestore.setOnClickListener(new View.OnClickListener(){
@@ -87,17 +100,8 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         });
     }
 
-    private void performBackup(){
-        //check if user is logged in to app
-        if(mPreference.isUserLoggedIn()){
-            //check if user exist
-            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-            if(firebaseUser == null){
-                requireLogin();
-            }
-            else{
-                showProgress();
-                final String userid = firebaseUser.getUid();
+    private void performBackup(final String userid){
+
                 DiaryExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -122,10 +126,31 @@ public class FirebaseBackupActivity extends AppCompatActivity {
                                 });
                     }
                 });
-            }
-        }
+
     }
 
+    private void confirmBackup(final String user_id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(FirebaseBackupActivity.this)
+                .setCancelable(true)
+                .setIcon(R.mipmap.ic_launcher)
+                .setTitle(R.string.app_name)
+                .setMessage(R.string.dialog_backup_confirmation)
+                .setPositiveButton(R.string.backup, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which){
+                        performBackup(user_id);
+                    }
+
+                })
+                .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        return;
+                    }
+                });
+
+        if(!builder.create().isShowing()) builder.create().show();
+    }
     private void confirmRestore(final String user_id){
         AlertDialog.Builder builder = new AlertDialog.Builder(FirebaseBackupActivity.this)
                 .setCancelable(true)
@@ -139,7 +164,7 @@ public class FirebaseBackupActivity extends AppCompatActivity {
                     }
 
                 })
-                .setNegativeButton(R.string.no,new DialogInterface.OnClickListener(){
+                .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         return;

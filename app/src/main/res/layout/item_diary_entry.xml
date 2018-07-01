@@ -34,7 +34,7 @@
         android:layout_marginRight="@dimen/list_item_icon_margin"
         android:layout_marginStart="@dimen/list_item_icon_margin"
         android:layout_marginTop="20dp"
-        android:text="Title Here dkajflkaj;lf adfja l;jfdal kdjflak;jfl;a"
+        android:text=""
         android:singleLine="true"
         android:ellipsize="end"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

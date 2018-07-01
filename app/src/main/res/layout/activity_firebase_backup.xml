@@ -31,7 +31,7 @@
         android:layout_marginRight="@dimen/margin_right_end"
         android:layout_marginStart="@dimen/margin_left_start"
         android:layout_marginTop="36dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:text="@string/backup_form_text"
         android:fontFamily="@string/intro_label_font"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
@@ -58,11 +58,11 @@
         android:layout_marginLeft="@dimen/margin_left_start"
         android:layout_marginRight="@dimen/margin_right_end"
         android:layout_marginStart="@dimen/margin_left_start"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="@dimen/list_item_horizontal_margin"
         android:layout_gravity="center"
         android:text="@string/backup_to_cloud"
         android:fontFamily="@string/intro_label_font"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
         android:textColor="@color/white"
         tools:targetApi="jelly_bean" />
     <Button
@@ -73,7 +73,7 @@
         android:layout_marginStart="@dimen/margin_left_start"
         android:layout_marginRight="@dimen/margin_right_end"
         android:layout_marginLeft="@dimen/margin_left_start"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/button_background_white"
         android:text="@string/restore"
         android:textColor="@color/colorPrimaryDark"/>

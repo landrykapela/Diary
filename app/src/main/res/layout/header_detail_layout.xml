@@ -33,6 +33,7 @@
         android:layout_marginLeft="@dimen/margin_left_start"
         android:layout_marginTop="16dp"
         android:paddingLeft="@dimen/padding_text_area_wide"
+        android:gravity="center"
         android:paddingRight="@dimen/padding_text_area_wide"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"

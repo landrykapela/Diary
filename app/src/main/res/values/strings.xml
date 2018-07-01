@@ -49,11 +49,14 @@
     <string name="dialog_restore_suggestion">A backup of your data is available on cloud. Restore Backup?</string>
     <string name="restore">Restore Now</string>
     <string name="dialog_restore_confirmation">This will overwrite your current data with the backup content</string>
+    <string name="dialog_backup_confirmation">This will overwrite your existing with this local content</string>
     <string name="backup_and_restore">Backup and Restore</string>
     <string name="backup_form_text">Keep your data in sync</string>
-    <string name="intro_label_font">sans-serif</string>
+    <string name="intro_label_font">san-serif</string>
     <string name="signin_success">Signin successful</string>
     <string name="signup_error">Error while signing up</string>
+    <string name="journal_entries">Journal Entries</string>
+    <string name="sample_thought">This is a sample of the thoughts and feelings I had today. They were generally good and gave me a happy mood.     This is so because I am finishing my 7DaysOfCodeChallenge today and submit in time. I hope this gives me a chance to advance to the nano degree program.</string>
 
     <string-array name="moods">
         <item>@string/happy</item>

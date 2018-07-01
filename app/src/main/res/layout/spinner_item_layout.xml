@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/spinner_horizontal_margin"
+    android:paddingTop="@dimen/spinner_horizontal_margin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,28 +10,32 @@
         android:id="@+id/ivIcon"
         android:layout_width="@dimen/list_item_mini_icon_size"
         android:layout_height="@dimen/list_item_mini_icon_size"
-        android:layout_marginBottom="@dimen/list_item_icon_margin"
+        android:layout_marginBottom="0dp"
         android:layout_marginEnd="@dimen/list_item_icon_margin"
         android:layout_marginLeft="@dimen/list_item_icon_margin"
         android:layout_marginRight="@dimen/list_item_icon_margin"
         android:layout_marginStart="@dimen/list_item_icon_margin"
-        android:layout_marginTop="@dimen/list_item_icon_margin"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/proud"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/ic_mood_sad" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left_start"
-        android:layout_marginLeft="@dimen/margin_left_start"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/list_item_icon_margin"
+        android:layout_marginLeft="@dimen/list_item_icon_margin"
+        android:layout_marginTop="@dimen/spinner_horizontal_margin"
+        android:text="aklfd;akfa"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@+id/ivIcon"
         app:layout_constraintStart_toEndOf="@+id/ivIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/ivIcon" />
 
 
 </android.support.constraint.ConstraintLayout>

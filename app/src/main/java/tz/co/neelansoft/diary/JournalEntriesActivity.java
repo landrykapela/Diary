@@ -18,10 +18,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,7 +69,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_DB_REFERENCE);
 
-        mRecyclerView         = findViewById(R.id.recyclerView);
+        mRecyclerView         = findViewById(R.id.recyclerView1);
         mFloatingActionButton = findViewById(R.id.fab);
 
         //open add new entry form
@@ -91,7 +94,9 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
         mDiaryEntryAdapter = new DiaryEntryAdapter(this,this);
         mRecyclerView.setAdapter(mDiaryEntryAdapter);
-        final String userId = mFirebaseAuth.getCurrentUser().getUid();
+        final String userId = mDiaryPreferenceUtils.getUserId();//mFirebaseAuth.getCurrentUser().getUid();
+
+
         retrieveDiaryEntries(userId);
 
 
@@ -125,7 +130,34 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
 
     }
+    private void performBackup(final String userid){
 
+        DiaryExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<DiaryEntry> myEntries = mDatabase.entryDao().getEntriesForBackup(userid);
+
+                mFirebaseDatabase.child(userid).setValue(myEntries)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.e(TAG, "Backup successful");
+                               // hideProgress();
+                               // showSuccess();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                              //  hideProgress();
+                                Log.e(TAG,"Backup failed: "+e);
+                                Toast.makeText(JournalEntriesActivity.this, "Backup Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -149,11 +181,17 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
     }
 
     private void updateTitle(){
-        String[] splits = mDiaryPreferenceUtils.getUserName().split(" ");
-        if(splits != null && splits.length > 0) {
-            String title = splits[0]+"'s Diary";
-            getSupportActionBar().setTitle(title);
-        }
+       if(mDiaryPreferenceUtils.getUserName() != null){
+           String[] splits = mDiaryPreferenceUtils.getUserName().split(" ");
+           if(splits != null && splits.length > 0) {
+               String title = splits[0]+"'s Diary";
+               getSupportActionBar().setTitle(title);
+           }
+       }
+       else{
+           getSupportActionBar().setTitle(R.string.journal_entries);
+       }
+
     }
 
     private void deleteDiaryEntry(final RecyclerView.ViewHolder vh){
@@ -246,13 +284,13 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
                @Override
                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    for(DataSnapshot ds: dataSnapshot.getChildren()){
-                       if(ds.getKey().equals(mFirebaseAuth.getCurrentUser().getUid())){
+                       if(ds.getKey().equals(user_id)){
                            Log.i(TAG,"backup exists: "+ds.getKey());
                            suggestRestore(user_id);
                            break;
                        }
                        else{
-                           Log.i(TAG,"backup does not exist: "+mFirebaseAuth.getCurrentUser().getUid()+"/"+ds.getKey());
+                           Log.i(TAG,"backup does not exist: "+user_id+"/"+ds.getKey());
                        }
                    }
                }
@@ -312,5 +350,9 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
             }
         });
+    }
+
+    private void showProgress(){
+
     }
 }
