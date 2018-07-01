@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by landre on 27/06/2018.
  */
 
-public class DateConverter {
+class DateConverter {
 
     @TypeConverter
     public static Date toDate(Long timeInMills){

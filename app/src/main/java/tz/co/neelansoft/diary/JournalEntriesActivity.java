@@ -18,13 +18,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,9 +54,6 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
     private DiaryDatabase mDatabase;
     private DiaryEntryAdapter mDiaryEntryAdapter;
 
-    private RecyclerView mRecyclerView;
-    private FloatingActionButton mFloatingActionButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -69,8 +63,8 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_DB_REFERENCE);
 
-        mRecyclerView         = findViewById(R.id.recyclerView1);
-        mFloatingActionButton = findViewById(R.id.fab);
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerView1);
+        FloatingActionButton mFloatingActionButton = findViewById(R.id.fab);
 
         //open add new entry form
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -130,34 +124,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
 
 
     }
-    private void performBackup(final String userid){
 
-        DiaryExecutors.getInstance().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                List<DiaryEntry> myEntries = mDatabase.entryDao().getEntriesForBackup(userid);
-
-                mFirebaseDatabase.child(userid).setValue(myEntries)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.e(TAG, "Backup successful");
-                               // hideProgress();
-                               // showSuccess();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                              //  hideProgress();
-                                Log.e(TAG,"Backup failed: "+e);
-                                Toast.makeText(JournalEntriesActivity.this, "Backup Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
-        });
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -352,7 +319,4 @@ public class JournalEntriesActivity extends AppCompatActivity implements DiaryEn
         });
     }
 
-    private void showProgress(){
-
-    }
 }

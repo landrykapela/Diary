@@ -45,7 +45,6 @@ public class SigninActivity extends AppCompatActivity {
     private static final String TAG = "SigninActivity";
     private Button mSignInWithEmail;
     private TextView mDisplayError;
-    private Button mSignup;
     private EditText mEditTextEmail;
     private EditText mEditTextPassword;
     private CheckBox mCheckBox;
@@ -68,7 +67,7 @@ public class SigninActivity extends AppCompatActivity {
         mProgressBar          = findViewById(R.id.progressBarSignIn);
         mDisplayError       = findViewById(R.id.tvSignInError);
 
-        mSignup = findViewById(R.id.btnSignupWithEmailAndPassword);
+        Button mSignup = findViewById(R.id.btnSignupWithEmailAndPassword);
         //user has not logged in
         if(!mDiaryPreferenceUtils.isUserLoggedIn()){
             SignInButton mGoogleSignInButton = findViewById(R.id.btnGoogleSignIn);
@@ -112,7 +111,7 @@ public class SigninActivity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(!emailValidator.validate(mEditTextEmail.getText().toString())){
+                    if(emailValidator.isValid(mEditTextEmail.getText().toString())){
                         showEmailError();
                     }
                     else{
@@ -122,7 +121,7 @@ public class SigninActivity extends AppCompatActivity {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    if(!emailValidator.validate(mEditTextEmail.getText().toString())){
+                    if(emailValidator.isValid(mEditTextEmail.getText().toString())){
                         showEmailError();
                     }
                     else{

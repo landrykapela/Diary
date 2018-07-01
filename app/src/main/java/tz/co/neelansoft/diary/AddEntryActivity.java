@@ -31,22 +31,17 @@ import tz.co.neelansoft.data.DiaryExecutors;
 public class AddEntryActivity extends AppCompatActivity {
 
     public static final String EXTRA_ENTRY_KEY = "entry_id";
-    public static final int DEFAULT_ENTRY_ID = -1;
+    private static final int DEFAULT_ENTRY_ID = -1;
     private static final String TAG = "AddEntryActivity";
 
     private DiaryDatabase mDatabase;
     private DiaryPreferenceUtils mPreferenceUtil;
 
-    private Button mButtonSave;
-    private Button mButtonDiscard;
-
     private EditText mEditTextTitle;
     private EditText mEditTextThoughts;
     private Spinner mSpinnerMood;
-    private TextView mDisplayError;
-    private TextView mHeadingLabel;
 
-    boolean isNewEntry = true;
+    private boolean isNewEntry = true;
 
     private int mEntryId = DEFAULT_ENTRY_ID;
 
@@ -57,12 +52,12 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
 
-        mButtonDiscard    = findViewById(R.id.btnDiscard);
-        mButtonSave       = findViewById(R.id.btnSave);
+        Button mButtonDiscard = findViewById(R.id.btnDiscard);
+        Button mButtonSave = findViewById(R.id.btnSave);
         mEditTextTitle    = findViewById(R.id.etTitle);
         mEditTextThoughts = findViewById(R.id.etThoughts);
-        mDisplayError     = findViewById(R.id.tvError);
-        mHeadingLabel     = findViewById(R.id.tvLabel);
+        TextView mDisplayError = findViewById(R.id.tvError);
+        TextView mHeadingLabel = findViewById(R.id.tvLabel);
         mSpinnerMood      = findViewById(R.id.spMood);
         
         mPreferenceUtil = new DiaryPreferenceUtils(this);

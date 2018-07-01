@@ -26,7 +26,7 @@ public class FirebaseBackupActivityTest {
 
 
     @Rule
-    public ActivityTestRule<FirebaseBackupActivity> mFirebaseBackupActivityRule = new ActivityTestRule<>(FirebaseBackupActivity.class);
+    public final ActivityTestRule<FirebaseBackupActivity> mFirebaseBackupActivityRule = new ActivityTestRule<>(FirebaseBackupActivity.class);
 
     @Before
     public void init(){

@@ -19,7 +19,7 @@ import tz.co.neelansoft.diary.R;
  */
 
 public class MoodSpinnerAdapter extends ArrayAdapter<Mood> {
-    private Context mContext;
+    private final Context mContext;
     private List<Mood> mMoods = new ArrayList<>();
 
     public MoodSpinnerAdapter(@NonNull Context context, List<Mood> moods) {
@@ -44,7 +44,7 @@ public class MoodSpinnerAdapter extends ArrayAdapter<Mood> {
         return getCustomView(position,convertView,parent);
     }
 
-    public View getCustomView(int position, View convertView, ViewGroup parent){
+    private View getCustomView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View customView = inflater.inflate(R.layout.spinner_item_layout, parent, false);

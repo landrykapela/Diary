@@ -57,6 +57,7 @@
     <string name="signup_error">Error while signing up</string>
     <string name="journal_entries">Journal Entries</string>
     <string name="sample_thought">This is a sample of the thoughts and feelings I had today. They were generally good and gave me a happy mood.     This is so because I am finishing my 7DaysOfCodeChallenge today and submit in time. I hope this gives me a chance to advance to the nano degree program.</string>
+    <string name="dialog_restore_success_message">Your data was successfully restored</string>
 
     <string-array name="moods">
         <item>@string/happy</item>

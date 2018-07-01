@@ -34,7 +34,7 @@ public class Mood {
         return this.title;
     }
 
-    public int getMood(){
+    private int getMood(){
         return this.mood;
     }
 

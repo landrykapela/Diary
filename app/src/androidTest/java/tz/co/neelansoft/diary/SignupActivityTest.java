@@ -25,7 +25,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class SignupActivityTest {
     private Resources resources;
     @Rule
-    public ActivityTestRule<SignupActivity> mSignupActivityTestRule = new ActivityTestRule<>(SignupActivity.class);
+    public final ActivityTestRule<SignupActivity> mSignupActivityTestRule = new ActivityTestRule<>(SignupActivity.class);
 
 
 

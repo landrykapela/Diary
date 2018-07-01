@@ -38,10 +38,8 @@ public class SignupActivity extends AppCompatActivity {
     private EditText mEditTextName;
     private EditText mEditTextEmail;
     private EditText mEditTextPassword;
-    private CheckBox mCheckBox;
     private ProgressBar mProgressBar;
 
-    private TextView mSigninButton;
     private TextView mErrorDisplay;
 
     private Button mSubmitButton;
@@ -61,13 +59,13 @@ public class SignupActivity extends AppCompatActivity {
         mEditTextName     = findViewById(R.id.etSignupName);
         mEditTextEmail    = findViewById(R.id.etSignupEmail);
         mEditTextPassword = findViewById(R.id.etSignupPassword);
-        mCheckBox         = findViewById(R.id.checkBox);
+        CheckBox mCheckBox = findViewById(R.id.checkBox);
 
         mProgressBar      = findViewById(R.id.progressBarSignup);
         mErrorDisplay     = findViewById(R.id.tvSignupError);
 
         mSubmitButton     = findViewById(R.id.btnSignupSubmit);
-        mSigninButton     = findViewById(R.id.btnSignupSigninButton);
+        TextView mSigninButton = findViewById(R.id.btnSignupSigninButton);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDiaryPreferenceUtil = new DiaryPreferenceUtils(this);
@@ -89,7 +87,7 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!emailValidator.validate(mEditTextEmail.getText().toString())){
+                if(emailValidator.isValid(mEditTextEmail.getText().toString())){
                     showEmailError();
                 }
                 else{
@@ -100,7 +98,7 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(!emailValidator.validate(mEditTextEmail.getText().toString())){
+                if(emailValidator.isValid(mEditTextEmail.getText().toString())){
                     showEmailError();
                 }
                 else{
@@ -214,7 +212,6 @@ public class SignupActivity extends AppCompatActivity {
                                 mProgressBar.setVisibility(View.GONE);
                                 Log.e(TAG,"Could not create user", task.getException());
                                 mErrorDisplay.setText(getResources().getString(R.string.signup_error));
-                                return;
 
                             }
                         }

@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
  */
 
 public class EmailValidationUtil {
-    private Pattern pattern;
-    private Matcher matcher;
+    private final Pattern pattern;
 
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -26,10 +25,10 @@ public class EmailValidationUtil {
      *            hex for validation
      * @return true valid hex, false invalid hex
      */
-    public boolean validate(final String hex) {
+    public boolean isValid(final String hex) {
 
-        matcher = pattern.matcher(hex);
-        return matcher.matches();
+        Matcher matcher = pattern.matcher(hex);
+        return !matcher.matches();
 
     }
 }

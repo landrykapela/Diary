@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tz.co.neelansoft.Utils.Config;
@@ -44,9 +45,6 @@ public class FirebaseBackupActivity extends AppCompatActivity {
     private DiaryPreferenceUtils mPreference;
 
     private ProgressBar mProgressBar;
-    private ImageView mImageCloud;
-    private Button mButtonCancel;
-    private Button mButtonRestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -55,9 +53,9 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firebase_backup);
 
         mProgressBar   = findViewById(R.id.progressBar);
-        mImageCloud    = findViewById(R.id.ivCloudBuckup);
-        mButtonCancel  = findViewById(R.id.cancel_backup_button);
-        mButtonRestore = findViewById(R.id.restore_backup_button);
+        ImageView mImageCloud = findViewById(R.id.ivCloudBuckup);
+        Button mButtonCancel = findViewById(R.id.cancel_backup_button);
+        Button mButtonRestore = findViewById(R.id.restore_backup_button);
 
         mPreference = new DiaryPreferenceUtils(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -95,7 +93,7 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         mButtonRestore.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                confirmRestore(userId);
+                checkBackup(userId);
             }
         });
     }
@@ -174,7 +172,19 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         if(!builder.create().isShowing()) builder.create().show();
     }
 
-    private void restoreData(String user_id){
+    private void restoreData(final String user_id){
+        final List<DiaryEntry> planBEntries = new ArrayList<>();
+        showProgress();
+
+        DiaryExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                for(DiaryEntry de: mDatabase.entryDao().getEntriesForBackup(user_id)){
+                    planBEntries.add(de);
+                    mDatabase.entryDao().deleteEntry(de);
+                }
+            }
+        });
         mFirebaseReference.child(user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -182,21 +192,35 @@ public class FirebaseBackupActivity extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     final DiaryEntry entry = ds.getValue(DiaryEntry.class);
                     DiaryExecutors.getInstance().diskIO().execute(new Runnable() {
-                        @Override
-                        public void run() {
+                          @Override
+                          public void run() {
+                              mDatabase.entryDao().addEntry(entry);
 
-                            mDatabase.entryDao().addEntry(entry);
-                        }
+                          }
                     });
                 }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                DiaryExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        for(int i=0; i< planBEntries.size();i++){
+                            mDatabase.entryDao().addEntry(planBEntries.get(i));
+                        }
+                    }
+                });
             }
+
         });
+
+
+        hideProgress();
+        showSuccess();
     }
+
     private void requireLogin(){
         AlertDialog.Builder builder = new AlertDialog.Builder(FirebaseBackupActivity.this)
                 .setTitle(R.string.dialog_require_login_title)
@@ -220,9 +244,9 @@ public class FirebaseBackupActivity extends AppCompatActivity {
     private void showSuccess(){
         hideProgress();
         AlertDialog.Builder builder = new AlertDialog.Builder(FirebaseBackupActivity.this)
-                .setTitle(R.string.backup_to_cloud)
+                .setTitle(R.string.backup_and_restore)
                 .setIcon(R.mipmap.ic_cloud_upload_white_48dp)
-                .setMessage(R.string.dialog_backup_success_message)
+                .setMessage(R.string.dialog_restore_success_message)
                 .setCancelable(false)
                 .setPositiveButton(getResources().getString(R.string.done), new DialogInterface.OnClickListener() {
                     @Override
@@ -239,7 +263,34 @@ public class FirebaseBackupActivity extends AppCompatActivity {
         startActivity(loginIntent);
         finish();
     }
+    private void checkBackup(final String user_id){
 
+        if(mPreference.isUserLoggedIn()){
+
+            mFirebaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        if(ds.getKey().equals(user_id)){
+                            Log.i(TAG,"backup exists: "+ds.getKey());
+                            confirmRestore(user_id);
+                            break;
+                        }
+                        else{
+                            Log.i(TAG,"backup does not exist: "+user_id+"/"+ds.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+    }
 
     private void hideProgress(){
         mProgressBar.setVisibility(View.GONE);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,10 @@ public class DiaryEntryAdapter extends RecyclerView.Adapter<DiaryEntryAdapter.Vi
 
     private static final String DATE_FORMAT = "dd/MM/yyyy";
     private List<DiaryEntry> mDiaryEntries = new ArrayList<>();
-    private Context mContext;
+    private final Context mContext;
     private final ItemClickListener mItemClickListener;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
     //public class constructor
     public DiaryEntryAdapter(Context _context, ItemClickListener listener){
 
@@ -41,8 +42,8 @@ public class DiaryEntryAdapter extends RecyclerView.Adapter<DiaryEntryAdapter.Vi
     public DiaryEntryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_diary_entry, parent, false);
 
-        ViewHolder vh = new ViewHolder(view);
-        return vh;
+        return new ViewHolder(view);
+
     }
 
     @Override
@@ -61,6 +62,9 @@ public class DiaryEntryAdapter extends RecyclerView.Adapter<DiaryEntryAdapter.Vi
     }
 
     public void setDiaryEntries(List<DiaryEntry> entries){
+        for(DiaryEntry de: entries){
+            Log.e("DiaryAdapter ","Entry id: "+de.getId());
+        }
         mDiaryEntries = entries;
         notifyDataSetChanged();
     }
@@ -75,9 +79,9 @@ public class DiaryEntryAdapter extends RecyclerView.Adapter<DiaryEntryAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        ImageView ivIcon;
-        TextView tvTitle;
-        TextView tvDate;
+        final ImageView ivIcon;
+        final TextView tvTitle;
+        final TextView tvDate;
 
 
         //default constructor

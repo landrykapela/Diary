@@ -12,16 +12,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class DiaryPreferenceUtils {
 
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
+    private final SharedPreferences pref;
+    private final SharedPreferences.Editor editor;
 
-    int PRIVATE_MODE = 0;
+    private final int PRIVATE_MODE = 0;
     private static final String PREF_NAME = "diary_preference";
     private static final String USER_NAME = "diary_pref_name";
     private static final String USER_EMAIL = "diary_pref_email";
     private static final String USER_ID = "diary_pref_id";
     private static final String USER_IS_LOGGED_IN = "diary_pref_is_logged_in";
-    private static final String GOOGLE_SIGNIN_MODE = "diary_pref_signin_mode";
 
     //constructor
     @SuppressLint("CommitPrefEdits")
@@ -34,7 +33,7 @@ public class DiaryPreferenceUtils {
         return pref.getBoolean(USER_IS_LOGGED_IN, false);
     }
 
-    public void setUserIsLoggedIn(boolean loggedIn){
+    private void setUserIsLoggedIn(boolean loggedIn){
         editor.putBoolean(USER_IS_LOGGED_IN,loggedIn);
         editor.commit();
     }
@@ -48,13 +47,9 @@ public class DiaryPreferenceUtils {
         return pref.getString(USER_NAME,null);
     }
 
-    public void setUserEmail(String email){
+    private void setUserEmail(String email){
         editor.putString(USER_EMAIL,email);
         editor.commit();
-    }
-
-    public String getUserEmail(){
-        return pref.getString(USER_EMAIL,null);
     }
 
     public void setUserId(String id){

@@ -25,16 +25,11 @@ import tz.co.neelansoft.data.DiaryEntry;
 
 public class EntryDetailActivity extends AppCompatActivity {
 
-    public static final String DATE_FORMAT = "dd/MM/yyyy";
+    private static final String DATE_FORMAT = "dd/MM/yyyy";
     public static final String EXTRA_ENTRY_KEY = "entry_id";
-    public static final int DEFAULT_ENTRY_ID = -1;
+    private static final int DEFAULT_ENTRY_ID = -1;
     private static final String TAG = "AddEntryActivity";
-    private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-
-    private DiaryDatabase mDatabase;
-    private DiaryPreferenceUtils mPreferenceUtil;
-
-    private FloatingActionButton mFab;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
 
     private TextView mTextViewTitle;
     private TextView mTextViewThoughts;
@@ -56,7 +51,7 @@ public class EntryDetailActivity extends AppCompatActivity {
         View headerView = findViewById(R.id.header_detail);
         View detailView = findViewById(R.id.body_detail);
 
-        mFab    = findViewById(R.id.fab);
+        FloatingActionButton mFab = findViewById(R.id.fab);
 
         mMoodImage        = headerView.findViewById(R.id.ivIcon);
         mTextViewTitle    = headerView.findViewById(R.id.tvTitle);
@@ -64,11 +59,11 @@ public class EntryDetailActivity extends AppCompatActivity {
         mTextViewDate     = detailView.findViewById(R.id.tvDate);
 
 
-        mPreferenceUtil = new DiaryPreferenceUtils(this);
+        DiaryPreferenceUtils mPreferenceUtil = new DiaryPreferenceUtils(this);
 
         mEntryId = getIntent().getIntExtra(EXTRA_ENTRY_KEY,DEFAULT_ENTRY_ID);
 
-        mDatabase = DiaryDatabase.getDatabaseInstance(this);
+        DiaryDatabase mDatabase = DiaryDatabase.getDatabaseInstance(this);
 
         if(savedInstanceState != null){
             mEntryId = savedInstanceState.getInt(EXTRA_ENTRY_KEY,DEFAULT_ENTRY_ID);
